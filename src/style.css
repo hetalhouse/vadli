@@ -1,0 +1,61 @@
+.vadli {
+  --vadli-bg: #0b0d12;
+  --vadli-fg: #e8ecf4;
+  --vadli-accent: #7aa2ff;
+  position: relative;
+  overflow: hidden;
+  background: var(--vadli-bg);
+  color: var(--vadli-fg);
+  font: 14px/1.4 system-ui, sans-serif;
+}
+.vadli-field { position: absolute; inset: 0; }
+.vadli-tile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.45);
+  background: #1a1f2b;
+}
+.vadli-img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+.vadli-play {
+  position: absolute; right: 6px; bottom: 6px;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: none; place-items: center; font-size: 10px;
+  background: rgb(0 0 0 / 0.6); color: #fff; pointer-events: none;
+}
+.vadli-tile.is-video .vadli-play { display: grid; }
+.vadli-play[hidden] { display: none; }
+.vadli--open .vadli-tile:not(.is-open) { opacity: 0.12 !important; pointer-events: none; transition: opacity 0.25s; }
+.vadli-tile.is-open {
+  z-index: 1000 !important;
+  opacity: 1 !important;
+  cursor: default;
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.7);
+  transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+}
+.vadli-tile.is-open .vadli-img { object-fit: contain; background: #000; }
+.vadli-video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; object-fit: contain; }
+.vadli-bar {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 1100;
+  display: none; align-items: center; gap: 8px; padding: 8px 12px;
+  background: linear-gradient(rgb(0 0 0 / 0.7), transparent);
+}
+.vadli-bar.is-on { display: flex; }
+.vadli-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vadli-note { color: var(--vadli-accent); }
+.vadli-btn {
+  font: inherit; color: var(--vadli-fg); text-decoration: none; cursor: pointer;
+  padding: 4px 10px; border-radius: 6px; border: 1px solid rgb(255 255 255 / 0.25);
+  background: rgb(255 255 255 / 0.08);
+}
+.vadli-btn:hover { background: rgb(255 255 255 / 0.18); }
+.vadli-btn[hidden] { display: none; }
+.vadli-status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; z-index: 1200; }
+.vadli-status[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .vadli-tile.is-open { transition: none; }
+}
